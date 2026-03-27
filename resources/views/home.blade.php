@@ -13,9 +13,9 @@
                     <div class="form-control w-full">
                         <textarea name="message" placeholder="What's on your mind?"
                             class="textarea textarea-bordered w-full resize-none @error('message') textarea-error @enderror" rows="4"
-                            maxlength="255" required>{{ old('message') }}</textarea>
+                            maxlength="255">{{ old('message') }}</textarea>
                         @error('message')
-                            <div class="label">
+                            <div class="label mt-2 tracking-wider text-red-700 text-base">
                                 <span class="label-text-alt text-error">{{ $message }}</span>
                             </div>
                         @enderror

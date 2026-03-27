@@ -32,18 +32,20 @@
                     </div>
 
                     <div class="flex gap-x-1.5">
-                        <a href="/chirps/{{ $chirp->id }}/edit" class="btn btn-ghost btn-xs tracking-wider text-sm">
-                            Edit
-                        </a>
-                        <form method="POST" action="/chirps/{{ $chirp->id }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                onclick="return confirm('Are you sure you want to delete this chirp?')"
-                                class="btn btn-ghost btn-xs text-sm tracking-wider text-error">
-                                Delete
-                            </button>
-                        </form>
+                        @if(auth()->check() && auth()->user()->id === $chirp->user_id)
+                            <a href="/chirps/{{ $chirp->id }}/edit" class="btn btn-ghost btn-xs tracking-wider text-sm">
+                                Edit
+                            </a>
+                            <form method="POST" action="/chirps/{{ $chirp->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    onclick="return confirm('Are you sure you want to delete this chirp?')"
+                                    class="btn btn-ghost btn-xs text-sm tracking-wider text-error">
+                                    Delete
+                                </button>
+                            </form>
+                        @endif
                     </div>
                 </div>
                 <p class="mt-1">{{ $chirp->message }}</p>
